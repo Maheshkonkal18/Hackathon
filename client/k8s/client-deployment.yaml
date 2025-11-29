@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lost-found-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lost-found-client
+  template:
+    metadata:
+      labels:
+        app: lost-found-client
+    spec:
+      containers:
+        - name: client
+          image: harshavardhan234/vvce-lost-found-client:latest
+          ports:
+            - containerPort: 80

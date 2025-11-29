@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lost-found-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: lost-found-server
+  template:
+    metadata:
+      labels:
+        app: lost-found-server
+    spec:
+      containers:
+        - name: server
+          image: harshavardhan234/vvce-lost-found-server:latest
+          ports:
+            - containerPort: 5000
+          env:
+            - name: PORT
+              value: "5000"
+            - name: MONGO_URI
+              value: "mongodb+srv://admin:hars1234@cluster0.m3vxoqa.mongodb.net/lostfound?retryWrites=true&w=majority"
+            - name: JWT_SECRET
+              value: "super_jwt_secret_here"
+            # optional: CORS frontend URL
+            - name: CLIENT_URL
+              value: "http://localhost:5173/"
+---
+

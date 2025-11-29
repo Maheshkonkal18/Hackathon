@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lost-found-client-service
+spec:
+  selector:
+    app: lost-found-client
+  ports:
+    - protocol: TCP
+      port: 80 # external port
+      targetPort: 80 # container port
+  type: LoadBalancer # or NodePort if using minikube
